@@ -225,6 +225,8 @@
   .lang-cloud.in .chip:nth-child(7){ transition-delay:.39s;}
   .chip:active{ background:var(--red); border-color:var(--red); color:#fff; transform:scale(.94) !important; }
   .chip.ghost{ border-style:dashed; opacity:.7 !important; }
+  .chip.on{ background:var(--red); border-color:var(--red); color:#fff; }
+  .chip.on::after{ content:" ✓ Carlos"; font-size:.68rem; font-weight:600; opacity:.85; }
 
   /* ---------- EQUIPMENT LIST ---------- */
   .equip-list{ margin-top:28px; display:flex; flex-direction:column; }
@@ -339,7 +341,7 @@
     <div class="eyebrow-line"></div>
 
     <h1 class="name">Carlos Julio<br><em>Carrero Contreras</em></h1>
-    <div class="role">Traductor Oficial<span>A1 Traducciones · Interpretación &amp; Servicios Notariales</span></div>
+    <div class="role">Traductor Oficial · Inglés &amp; Portugués<span>A1 Traducciones · Interpretación &amp; Servicios Notariales</span></div>
 
     <div class="actions">
       <a class="action" href="tel:+573006604942">
@@ -350,7 +352,7 @@
         <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.75.94-.92 1.14-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.45s1.05 2.84 1.19 3.04c.15.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.56-.34z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.16L2 22l5.09-1.53a9.87 9.87 0 0 0 4.95 1.34h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 17.9a8.18 8.18 0 0 1-4.4-1.28l-.32-.19-3.02.9.9-2.94-.21-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.53 3.69-8.22 8.31-8.22a8.24 8.24 0 0 1 8.29 8.22c0 4.53-3.69 8.19-8.3 8.19z"/></svg></span>
         <span>WhatsApp</span>
       </a>
-      <a class="action" href="mailto:info@a1traducciones.com">
+      <a class="action" href="mailto:info@a1traducciones.com.co">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
         <span>Correo</span>
       </a>
@@ -386,7 +388,7 @@
       <div class="svc-card glass">
         <div class="num">01 — Traducción</div>
         <h3>Traducción Oficial</h3>
-        <p>Traducción certificada en inglés, portugués, francés, italiano, chino, alemán y muchos idiomas más, con validez ante entidades públicas y privadas.</p>
+        <p>Carlos Julio es traductor oficial en inglés y portugués. Para francés, italiano, chino, alemán y otros idiomas contamos con nuestro equipo de traductores oficiales, con la misma validez ante entidades públicas y privadas.</p>
       </div>
       <div class="svc-card glass">
         <div class="num">02 — Conferencias</div>
@@ -408,16 +410,17 @@
 
   <section class="reveal">
     <div class="kicker">Idiomas</div>
-    <h2 style="font-size:clamp(1.4rem,5.5vw,1.8rem); color:var(--navy); font-weight:600;">Un traductor oficial, <em style="font-style:italic;color:var(--red);">todos los idiomas.</em></h2>
+    <h2 style="font-size:clamp(1.4rem,5.5vw,1.8rem); color:var(--navy); font-weight:600;">Un equipo de traductores oficiales, <em style="font-style:italic;color:var(--red);">todos los idiomas.</em></h2>
     <div class="lang-cloud">
-      <span class="chip">Inglés</span>
-      <span class="chip">Portugués</span>
+      <span class="chip on">Inglés</span>
+      <span class="chip on">Portugués</span>
       <span class="chip">Francés</span>
       <span class="chip">Italiano</span>
       <span class="chip">Chino</span>
       <span class="chip">Alemán</span>
       <span class="chip ghost">y muchos más →</span>
     </div>
+    <p style="text-align:center; font-size:.8rem; color:#6b6b6b; margin-top:16px; max-width:320px; margin-left:auto; margin-right:auto;">Carlos Julio es traductor oficial en <b style="color:var(--navy);">inglés y portugués</b>. Los demás idiomas están cubiertos por nuestro equipo de traductores oficiales aliados.</p>
   </section>
 
   <section class="reveal">
@@ -444,9 +447,9 @@
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
         <div><div class="lab">Teléfono / WhatsApp</div><div class="val">+57 318 312 5559</div></div>
       </a>
-      <a class="c-row" href="mailto:info@a1traducciones.com">
+      <a class="c-row" href="mailto:info@a1traducciones.com.co">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
-        <div><div class="lab">Correo</div><div class="val">info@a1traducciones.com</div></div>
+        <div><div class="lab">Correo</div><div class="val">info@a1traducciones.com.co</div></div>
       </a>
       <a class="c-row" href="mailto:carrerocarlos@gmail.com">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
@@ -473,7 +476,7 @@
   </section>
 
   <footer>
-    <b>A1 Traducciones</b> · Carlos Julio Carrero Contreras — Traductor Oficial<br>
+    <b>A1 Traducciones</b> · Carlos Julio Carrero Contreras — Traductor Oficial (Inglés · Portugués)<br>
     Bogotá, Colombia
   </footer>
 
@@ -513,7 +516,7 @@
       "TITLE:Traductor Oficial",
       "TEL;TYPE=CELL,VOICE:+573006604942",
       "TEL;TYPE=CELL,VOICE:+573183125559",
-      "EMAIL;TYPE=WORK:info@a1traducciones.com",
+      "EMAIL;TYPE=WORK:info@a1traducciones.com.co",
       "EMAIL;TYPE=INTERNET:carrerocarlos@gmail.com",
       "URL:https://www.a1traducciones.com",
       "ADR;TYPE=WORK:;;Av. Carrera 15 # 119-11 Of. 432;Bogotá;;;Colombia",
