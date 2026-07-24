@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Carlos Julio Carrero Contreras · A1 Traducciones</title>
+<meta name="description" content="Tarjeta digital de contacto — A1 Traducciones. Traductor Oficial, interpretación, alquiler de equipos y servicios notariales.">
+<meta name="theme-color" content="#101c3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#c41230;
+    --red-deep:#8a0c22;
+    --red-glow:#ff5470;
+    --navy:#101c3a;
+    --navy-2:#1c2b4e;
+    --paper:#f3efe6;
+    --ink:#181615;
+    --line: rgba(16,28,58,.14);
+
+    --glass-bg: rgba(255,255,255,.42);
+    --glass-bg-soft: rgba(255,255,255,.28);
+    --glass-bg-strong: rgba(255,255,255,.62);
+    --glass-navy: rgba(16,28,58,.52);
+    --glass-border: rgba(255,255,255,.55);
+    --glass-border-dark: rgba(255,255,255,.16);
+    --glass-shadow: 0 20px 50px -20px rgba(16,28,58,.4), inset 0 1px 0 rgba(255,255,255,.5);
+    --glass-shadow-dark: 0 20px 50px -18px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    cursor:default;
+  }
+
+  ::selection{ background:var(--red); color:#fff; }
+
+  /* ---------- scroll progress ---------- */
+  .progress{ position:fixed; top:0; left:0; height:3px; width:0%; z-index:100;
+    background:linear-gradient(90deg,var(--red),var(--red-glow),var(--navy));
+    box-shadow:0 0 12px rgba(196,18,48,.6); transition:width .08s linear; }
+
+  /* ---------- ambient glass backdrop ---------- */
+  .grain{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.4; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+  .aurora{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .blob{ position:absolute; border-radius:50%; filter:blur(70px); opacity:.55; animation:drift 22s ease-in-out infinite; }
+  .blob.b1{ width:52vw; height:52vw; background:radial-gradient(circle at 30% 30%, var(--red), transparent 70%); top:-14%; left:-16%; animation-duration:26s; }
+  .blob.b2{ width:44vw; height:44vw; background:radial-gradient(circle at 60% 40%, var(--navy-2), transparent 70%); top:30%; right:-18%; animation-duration:31s; animation-delay:-6s; }
+  .blob.b3{ width:60vw; height:60vw; background:radial-gradient(circle at 50% 50%, var(--red-deep), transparent 70%); bottom:-10%; left:-20%; animation-duration:24s; animation-delay:-3s; }
+  .blob.b4{ width:40vw; height:40vw; background:radial-gradient(circle at 40% 60%, var(--navy), transparent 70%); bottom:5%; right:-10%; animation-duration:28s; animation-delay:-14s; }
+  @keyframes drift{ 0%,100%{ transform:translate(0,0) scale(1);} 33%{ transform:translate(4%,-5%) scale(1.08);} 66%{ transform:translate(-4%,4%) scale(.95);} }
+
+  .shard{ position:absolute; will-change:transform; }
+  .shard svg{ display:block; width:100%; height:100%; }
+
+  /* pointer spotlight */
+  .spotlight{
+    position:fixed; inset:0; z-index:2; pointer-events:none; opacity:0; transition:opacity .4s;
+    background:radial-gradient(320px circle at var(--sx,50%) var(--sy,50%), rgba(255,255,255,.35), transparent 60%);
+    mix-blend-mode:soft-light;
+  }
+
+  main{ position:relative; z-index:1; }
+
+  section{ position:relative; padding:clamp(40px,9vw,88px) 22px; max-width:640px; margin:0 auto; }
+
+  .kicker{
+    font-size:.72rem; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--red); font-weight:700; display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .kicker::before{ content:""; width:26px; height:2px; background:var(--red); display:block; }
+
+  h1,h2,h3{ font-family:'Fraunces', serif; margin:0; letter-spacing:-0.01em; }
+  h2{ position:relative; display:inline-block; }
+  h2::after{
+    content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0%;
+    background:linear-gradient(90deg,var(--red),var(--red-glow));
+    transition:width 1s cubic-bezier(.2,.8,.2,1) .15s; border-radius:4px;
+  }
+  .reveal.in h2::after{ width:64px; }
+
+  /* ---------- glass panel base ---------- */
+  .glass{
+    background:var(--glass-bg);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:var(--glass-shadow);
+  }
+  .glass-dark{
+    background:var(--glass-navy);
+    border:1px solid var(--glass-border-dark);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:var(--glass-shadow-dark);
+    color:#f4f1ea;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:clamp(50px,12vw,96px); text-align:center; }
+  .mark{ width:118px; margin:0 auto 16px; display:block; filter:drop-shadow(0 14px 24px rgba(196,18,48,.3)); animation:rise .9s cubic-bezier(.2,.8,.2,1) both; }
+  .mark-word{ font-family:'Archivo'; font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem; text-align:center; color:var(--navy); margin-top:2px; animation:rise .9s .1s cubic-bezier(.2,.8,.2,1) both; }
+  .mark-word b{ color:var(--red); }
+  @keyframes rise{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow-line{ width:64px; height:1px; background:var(--line); margin:20px auto; animation:rise .9s .18s cubic-bezier(.2,.8,.2,1) both; }
+
+  .name{ font-size:clamp(2rem, 8vw, 2.6rem); font-weight:600; color:var(--navy); line-height:1.05; animation:rise .9s .25s cubic-bezier(.2,.8,.2,1) both; }
+  .name em{ font-style:italic; color:var(--red); font-weight:500; }
+  .role{ margin-top:10px; font-size:1rem; letter-spacing:.14em; text-transform:uppercase; color:var(--red); font-weight:600; animation:rise .9s .35s cubic-bezier(.2,.8,.2,1) both; }
+  .role span{ display:block; font-family:'Archivo'; font-size:.78rem; letter-spacing:.1em; color:var(--ink); opacity:.6; text-transform:none; margin-top:6px; font-weight:500;}
+
+  /* ---------- ACTION GRID ---------- */
+  .actions{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:32px; animation:rise .9s .45s cubic-bezier(.2,.8,.2,1) both; }
+  .action{
+    position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; gap:9px;
+    text-decoration:none; color:var(--navy); padding:14px 4px 12px;
+    border-radius:18px;
+    transition:transform .35s cubic-bezier(.2,.9,.3,1.3), box-shadow .35s;
+  }
+  .action:active{ transform:scale(.92); }
+  .action:hover{ transform:translateY(-4px); }
+  .action .ic{
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--navy); color:#fff; flex-shrink:0; transition:transform .4s cubic-bezier(.2,.9,.3,1.4);
+  }
+  .action:hover .ic{ transform:scale(1.12) rotate(-6deg); }
+  .action:nth-child(1) .ic, .action:nth-child(3) .ic{ background:var(--red); }
+  .action .ic svg{ width:17px; height:17px; }
+  .action span{ font-size:.66rem; font-weight:700; letter-spacing:.02em; text-align:center; line-height:1.15; }
+  .ripple{ position:absolute; border-radius:50%; background:rgba(196,18,48,.35); transform:scale(0); animation:ripple .6s ease-out forwards; pointer-events:none; }
+  @keyframes ripple{ to{ transform:scale(3.2); opacity:0; } }
+
+  /* ---------- QR / networking block (front and center) ---------- */
+  .qr-block{ text-align:center; margin-top:34px; animation:rise .9s .55s cubic-bezier(.2,.8,.2,1) both; }
+  .qr-frame{
+    display:inline-block; padding:18px; border-radius:26px; position:relative; overflow:hidden;
+  }
+  .qr-frame::before, .qr-frame::after{
+    content:""; position:absolute; width:22px; height:22px; border:3px solid var(--red); z-index:2;
+  }
+  .qr-frame::before{ top:8px; left:8px; border-right:none; border-bottom:none; }
+  .qr-frame::after{ bottom:8px; right:8px; border-left:none; border-top:none; }
+  .qr-frame img{ width:190px; height:190px; display:block; border-radius:10px; position:relative; z-index:1; }
+  .qr-sheen{
+    position:absolute; top:-50%; left:-60%; width:60%; height:200%;
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,.75), transparent);
+    transform:rotate(20deg); animation:sheen 4.5s ease-in-out infinite; z-index:2; pointer-events:none;
+  }
+  @keyframes sheen{ 0%{ left:-60%; } 45%{ left:120%; } 100%{ left:120%; } }
+  .qr-cap{ margin-top:16px; font-size:.85rem; color:#5c5c5c; max-width:280px; margin-left:auto; margin-right:auto; }
+  .qr-cap b{ color:var(--navy); }
+
+  .save-btn{
+    margin-top:20px; display:inline-flex; align-items:center; gap:10px;
+    background:var(--red); color:#fff; border:none; padding:16px 30px; border-radius:999px;
+    font-family:'Archivo'; font-weight:700; font-size:.9rem; letter-spacing:.02em; cursor:pointer;
+    box-shadow:0 16px 34px -14px rgba(196,18,48,.55); position:relative; overflow:hidden;
+    transition:transform .3s, box-shadow .3s, background .3s;
+  }
+  .save-btn:hover{ transform:translateY(-3px); box-shadow:0 20px 40px -14px rgba(196,18,48,.65); }
+  .save-btn.done{ background:var(--navy); }
+  .save-btn svg{ width:16px; height:16px; }
+
+  /* ---------- DIVIDER / QUOTE ---------- */
+  .lede{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:clamp(1.2rem, 5vw, 1.45rem); line-height:1.5; color:var(--navy); text-align:center;
+  }
+  .lede strong{ font-style:normal; color:var(--red); font-weight:600; }
+
+  /* ---------- SERVICES ---------- */
+  .svc-grid{ display:grid; gap:14px; margin-top:30px; }
+  .svc-card{
+    position:relative; padding:24px 22px; border-radius:22px; overflow:hidden;
+    opacity:0; transform:translateY(30px) scale(.97);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .svc-grid.in .svc-card:nth-child(1){ transition-delay:.05s; }
+  .svc-grid.in .svc-card:nth-child(2){ transition-delay:.16s; }
+  .svc-grid.in .svc-card:nth-child(3){ transition-delay:.27s; }
+  .svc-grid.in .svc-card:nth-child(4){ transition-delay:.38s; }
+  .svc-grid.in .svc-card{ opacity:1; transform:translateY(0) scale(1); }
+  .svc-card::after{
+    content:""; position:absolute; right:-30px; top:-30px; width:130px; height:130px;
+    background:var(--red); opacity:.16; border-radius:38% 62% 65% 35% / 42% 38% 62% 58%;
+    transition:transform .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .svc-card:hover::after{ transform:scale(1.25) rotate(20deg); }
+  .svc-card .num{ font-family:'Fraunces',serif; font-size:.75rem; color:var(--red); font-weight:600; letter-spacing:.08em; position:relative; z-index:1;}
+  .svc-card h3{ font-size:1.24rem; margin-top:8px; font-weight:600; color:var(--navy); position:relative; z-index:1; }
+  .svc-card p{ margin:10px 0 0; font-size:.87rem; line-height:1.55; color:#4a4a4a; position:relative; z-index:1; }
+  .svc-card:hover{ transform:translateY(-6px) !important; }
+
+  /* ---------- LANGUAGES ---------- */
+  .lang-cloud{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; justify-content:center; }
+  .chip{
+    padding:9px 18px; border-radius:999px; font-size:.85rem; font-weight:600;
+    border:1.5px solid var(--navy); color:var(--navy); position:relative; background:rgba(255,255,255,.35);
+    opacity:0; transform:translateY(14px) scale(.9);
+    transition:opacity .5s ease, transform .5s cubic-bezier(.3,.7,.3,1.3), background .3s, color .3s;
+    cursor:default;
+  }
+  .lang-cloud.in .chip{ opacity:1; transform:translateY(0) scale(1); }
+  .lang-cloud.in .chip:nth-child(1){ transition-delay:.03s;}
+  .lang-cloud.in .chip:nth-child(2){ transition-delay:.09s;}
+  .lang-cloud.in .chip:nth-child(3){ transition-delay:.15s;}
+  .lang-cloud.in .chip:nth-child(4){ transition-delay:.21s;}
+  .lang-cloud.in .chip:nth-child(5){ transition-delay:.27s;}
+  .lang-cloud.in .chip:nth-child(6){ transition-delay:.33s;}
+  .lang-cloud.in .chip:nth-child(7){ transition-delay:.39s;}
+  .chip:active{ background:var(--red); border-color:var(--red); color:#fff; transform:scale(.94) !important; }
+  .chip.ghost{ border-style:dashed; opacity:.7 !important; }
+
+  /* ---------- EQUIPMENT LIST ---------- */
+  .equip-list{ margin-top:28px; display:flex; flex-direction:column; }
+  .equip-row{
+    display:flex; align-items:center; gap:16px; padding:18px 6px; border-bottom:1px solid var(--line); border-radius:14px;
+    opacity:0; transform:translateX(-24px);
+    transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1), background .3s;
+  }
+  .equip-list.in .equip-row{ opacity:1; transform:translateX(0); }
+  .equip-list.in .equip-row:nth-child(1){ transition-delay:.05s; }
+  .equip-list.in .equip-row:nth-child(2){ transition-delay:.16s; }
+  .equip-list.in .equip-row:nth-child(3){ transition-delay:.27s; }
+  .equip-list.in .equip-row:nth-child(4){ transition-delay:.38s; }
+  .equip-row:hover{ background:rgba(255,255,255,.45); }
+  .equip-row:first-child{ border-top:1px solid var(--line); }
+  .equip-row .idx{ font-family:'Fraunces',serif; font-style:italic; color:var(--red); font-size:1.1rem; width:26px; flex-shrink:0; }
+  .equip-row .txt b{ display:block; font-size:.98rem; color:var(--navy); }
+  .equip-row .txt span{ font-size:.8rem; color:#6b6b6b; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{ border-radius:26px; padding:28px 22px; margin-top:28px; }
+  .c-row{
+    display:flex; align-items:flex-start; gap:14px; padding:14px 4px; border-bottom:1px dashed var(--line);
+    text-decoration:none; color:inherit; border-radius:12px; transition:background .3s, transform .3s;
+  }
+  .c-row:hover{ background:rgba(255,255,255,.4); transform:translateX(4px); }
+  .c-row:last-child{ border-bottom:none; }
+  .c-row .ic{
+    width:36px; height:36px; border-radius:10px; background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--red);
+  }
+  .c-row .ic svg{ width:16px; height:16px; }
+  .c-row .lab{ font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:#8a8a8a; font-weight:700; }
+  .c-row .val{ font-size:.95rem; color:var(--navy); font-weight:600; margin-top:2px; }
+
+  .socials{ display:flex; gap:12px; margin-top:22px; justify-content:center; }
+  .socials a{
+    width:46px; height:46px; border-radius:50%; background:var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+    transition:transform .35s cubic-bezier(.2,.8,.3,1.4), background .3s;
+  }
+  .socials a:hover{ transform:translateY(-4px) rotate(-8deg) scale(1.08); background:var(--red); }
+  .socials svg{ width:19px; height:19px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ text-align:center; padding:40px 22px 100px; font-size:.75rem; color:#9a9a9a; position:relative; z-index:1; }
+  footer b{ color:var(--navy); }
+
+  /* ---------- STICKY BOTTOM BAR (mobile) ---------- */
+  .stickybar{
+    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    display:flex; gap:8px; padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    transform:translateY(110%); transition:transform .45s cubic-bezier(.2,.9,.3,1);
+  }
+  .stickybar.show{ transform:translateY(0); }
+  .stickybar a{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
+    color:#fff; text-decoration:none; font-size:.76rem; font-weight:700; padding:11px 6px; border-radius:12px;
+    background:rgba(255,255,255,.1); transition:transform .25s, background .25s;
+  }
+  .stickybar a:active{ transform:scale(.93); }
+  .stickybar a.primary{ background:var(--red); }
+  .stickybar svg{ width:15px; height:15px; }
+
+  /* ---------- reveal-on-scroll (section-level) ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (min-width:680px){ .svc-grid{ grid-template-columns:1fr 1fr; } }
+  @media (hover:none){ .spotlight{ display:none; } }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="grain"></div>
+<div class="spotlight" id="spotlight"></div>
+
+<div class="aurora" id="aurora">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+
+  <div class="shard" data-depth="0.06" style="top:4%; left:-14%; width:220px; height:220px;">
+    <svg viewBox="0 0 200 200"><polygon points="100,10 190,190 10,190" fill="rgba(255,255,255,.14)" stroke="rgba(196,18,48,.5)" stroke-width="2"/></svg>
+  </div>
+  <div class="shard" data-depth="0.11" style="top:24%; right:-12%; width:190px; height:190px;">
+    <svg viewBox="0 0 200 200"><polygon points="100,10 190,190 10,190" fill="rgba(16,28,58,.1)" stroke="rgba(16,28,58,.4)" stroke-width="2"/></svg>
+  </div>
+  <div class="shard" data-depth="0.045" style="top:56%; left:-8%; width:160px; height:160px;">
+    <svg viewBox="0 0 200 200"><polygon points="100,10 190,190 10,190" fill="none" stroke="rgba(196,18,48,.35)" stroke-width="6"/></svg>
+  </div>
+  <div class="shard" data-depth="0.09" style="top:82%; right:-14%; width:260px; height:260px;">
+    <svg viewBox="0 0 200 200"><polygon points="100,10 190,190 10,190" fill="rgba(196,18,48,.1)" stroke="rgba(196,18,48,.4)" stroke-width="2"/></svg>
+  </div>
+  <div class="shard" data-depth="0.03" style="top:108%; left:16%; width:200px; height:200px;">
+    <svg viewBox="0 0 200 200"><polygon points="100,10 190,190 10,190" fill="none" stroke="rgba(16,28,58,.3)" stroke-width="5"/></svg>
+  </div>
+  <div class="shard" data-depth="0.12" style="top:132%; right:-8%; width:180px; height:180px;">
+    <svg viewBox="0 0 200 200"><polygon points="100,10 190,190 10,190" fill="rgba(16,28,58,.12)" stroke="rgba(16,28,58,.4)" stroke-width="2"/></svg>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <svg class="mark" viewBox="0 0 720 620" xmlns="http://www.w3.org/2000/svg">
+      <path d="M360 30 L590 480 L440 480 L360 320 L280 480 L200 480 L360 160 L305 270 L245 270 L360 30Z" fill="var(--red)"/>
+    </svg>
+    <div class="mark-word"><b>A1</b> TRADUCCIONES</div>
+
+    <div class="eyebrow-line"></div>
+
+    <h1 class="name">Carlos Julio<br><em>Carrero Contreras</em></h1>
+    <div class="role">Traductor Oficial<span>A1 Traducciones · Interpretación &amp; Servicios Notariales</span></div>
+
+    <div class="actions">
+      <a class="action" href="tel:+573006604942">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span>Llamar</span>
+      </a>
+      <a class="action" href="https://wa.me/573006604942" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.75.94-.92 1.14-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.45s1.05 2.84 1.19 3.04c.15.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.56-.34z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.16L2 22l5.09-1.53a9.87 9.87 0 0 0 4.95 1.34h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 17.9a8.18 8.18 0 0 1-4.4-1.28l-.32-.19-3.02.9.9-2.94-.21-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.53 3.69-8.22 8.31-8.22a8.24 8.24 0 0 1 8.29 8.22c0 4.53-3.69 8.19-8.3 8.19z"/></svg></span>
+        <span>WhatsApp</span>
+      </a>
+      <a class="action" href="mailto:info@a1traducciones.com">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+        <span>Correo</span>
+      </a>
+      <a class="action" href="#guardar">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span>
+        <span>Guardar</span>
+      </a>
+    </div>
+
+    <!-- QR right up front: this is what Carlos shows people first at the event -->
+    <div class="qr-block" id="guardar">
+      <div class="qr-frame glass">
+        <img id="qrImg" alt="Código QR de contacto A1 Traducciones" width="190" height="190">
+        <div class="qr-sheen"></div>
+      </div>
+      <p class="qr-cap">Escanee este código con la cámara de su teléfono para abrir la tarjeta de <b>Carlos Julio Carrero Contreras</b> y guardar el contacto.</p>
+      <button class="save-btn" id="saveBtn" onclick="downloadVCard(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="lbl">Guardar contacto (.vcf)</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="lede">Traducimos y legalizamos documentos oficiales, <strong>acompañamos conferencias e interpretación en vivo</strong> y ponemos a su disposición los equipos técnicos para que la comunicación nunca se detenga.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="kicker">Servicios</div>
+    <h2 style="font-size:clamp(1.6rem,6vw,2.1rem); color:var(--navy); font-weight:600;">Todo lo que necesita, <em style="font-style:italic;color:var(--red);">bajo un solo techo.</em></h2>
+
+    <div class="svc-grid">
+      <div class="svc-card glass">
+        <div class="num">01 — Traducción</div>
+        <h3>Traducción Oficial</h3>
+        <p>Traducción certificada en inglés, portugués, francés, italiano, chino, alemán y muchos idiomas más, con validez ante entidades públicas y privadas.</p>
+      </div>
+      <div class="svc-card glass">
+        <div class="num">02 — Conferencias</div>
+        <h3>Interpretación</h3>
+        <p>Interpretación simultánea y consecutiva para conferencias, audiencias, reuniones corporativas y eventos internacionales.</p>
+      </div>
+      <div class="svc-card glass">
+        <div class="num">03 — Equipos</div>
+        <h3>Alquiler de Equipos</h3>
+        <p>Cabinas, receptores, transmisores y consolas de interpretación para que su evento suene impecable en cualquier idioma.</p>
+      </div>
+      <div class="svc-card glass">
+        <div class="num">04 — Notarial</div>
+        <h3>Servicios Notariales</h3>
+        <p>Autenticación de firma del traductor oficial, legalizaciones y apostillas de sus documentos traducidos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="kicker">Idiomas</div>
+    <h2 style="font-size:clamp(1.4rem,5.5vw,1.8rem); color:var(--navy); font-weight:600;">Un traductor oficial, <em style="font-style:italic;color:var(--red);">todos los idiomas.</em></h2>
+    <div class="lang-cloud">
+      <span class="chip">Inglés</span>
+      <span class="chip">Portugués</span>
+      <span class="chip">Francés</span>
+      <span class="chip">Italiano</span>
+      <span class="chip">Chino</span>
+      <span class="chip">Alemán</span>
+      <span class="chip ghost">y muchos más →</span>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="kicker">Alquiler de Equipos</div>
+    <h2 style="font-size:clamp(1.4rem,5.5vw,1.8rem); color:var(--navy); font-weight:600;">Tecnología para <em style="font-style:italic;color:var(--red);">interpretación en vivo.</em></h2>
+    <div class="equip-list">
+      <div class="equip-row"><span class="idx">01</span><div class="txt"><b>Cabinas de interpretación</b><span>Insonorizadas, para 1 o más idiomas simultáneos</span></div></div>
+      <div class="equip-row"><span class="idx">02</span><div class="txt"><b>Receptores y auriculares</b><span>Para asistentes, por unidad o por lote de evento</span></div></div>
+      <div class="equip-row"><span class="idx">03</span><div class="txt"><b>Transmisores y micrófonos</b><span>Cobertura estable para salones y auditorios</span></div></div>
+      <div class="equip-row"><span class="idx">04</span><div class="txt"><b>Consolas de intérprete</b><span>Operadas por técnico o personal de A1 Traducciones</span></div></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="kicker">Contacto</div>
+    <h2 style="font-size:clamp(1.4rem,5.5vw,1.8rem); color:var(--navy); font-weight:600;">Hablemos <em style="font-style:italic;color:var(--red);">directamente.</em></h2>
+
+    <div class="contact-card glass">
+      <a class="c-row" href="tel:+573006604942">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><div class="lab">Teléfono / WhatsApp</div><div class="val">+57 300 660 4942</div></div>
+      </a>
+      <a class="c-row" href="tel:+573183125559">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><div class="lab">Teléfono / WhatsApp</div><div class="val">+57 318 312 5559</div></div>
+      </a>
+      <a class="c-row" href="mailto:info@a1traducciones.com">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+        <div><div class="lab">Correo</div><div class="val">info@a1traducciones.com</div></div>
+      </a>
+      <a class="c-row" href="mailto:carrerocarlos@gmail.com">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+        <div><div class="lab">Correo directo</div><div class="val">carrerocarlos@gmail.com</div></div>
+      </a>
+      <a class="c-row" href="https://www.a1traducciones.com" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <div><div class="lab">Sitio web</div><div class="val">www.a1traducciones.com</div></div>
+      </a>
+      <div class="c-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><div class="lab">Oficina</div><div class="val">Av. Carrera 15 # 119 – 11, Of. 432<br>Bogotá, Colombia</div></div>
+      </div>
+    </div>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/traductor_oficial_colombia" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/a1-traducciones-1a239617b" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.94 1.94 0 1 0 0 3.88A1.94 1.94 0 0 0 5.25 3zM21 21v-6.9c0-3.7-2-5.4-4.6-5.4a4 4 0 0 0-3.6 2v-1.7H9.4c.05 1 0 12 0 12h3.38v-6.7c0-.36.03-.72.13-1 .29-.72.95-1.46 2.06-1.46 1.45 0 2.03 1.1 2.03 2.72V21H21z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <b>A1 Traducciones</b> · Carlos Julio Carrero Contreras — Traductor Oficial<br>
+    Bogotá, Colombia
+  </footer>
+
+</main>
+
+<div class="stickybar glass-dark" id="stickybar">
+  <a href="tel:+573006604942">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Llamar
+  </a>
+  <a href="https://wa.me/573006604942" target="_blank" rel="noopener" class="primary">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.75.94-.92 1.14-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.45s1.05 2.84 1.19 3.04c.15.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.56-.34z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.16L2 22l5.09-1.53a9.87 9.87 0 0 0 4.95 1.34h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 17.9a8.18 8.18 0 0 1-4.4-1.28l-.32-.19-3.02.9.9-2.94-.21-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.53 3.69-8.22 8.31-8.22a8.24 8.24 0 0 1 8.29 8.22c0 4.53-3.69 8.19-8.3 8.19z"/></svg>
+    WhatsApp
+  </a>
+  <a href="#guardar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+    QR / Guardar
+  </a>
+</div>
+
+<script>
+  // ============================================================
+  // ⚠️ ACTUALIZAR: pega aquí la URL real donde quede publicada
+  // esta tarjeta (la que arroje Netlify Drop). El QR debe apuntar
+  // a esa URL para que, al escanearlo en el evento, la gente
+  // llegue directo a esta misma página.
+  // ============================================================
+  const CARD_URL = "https://REEMPLAZAR-CON-TU-URL.netlify.app";
+
+  // ---------- vCard ----------
+  function buildVCard(){
+    return [
+      "BEGIN:VCARD","VERSION:3.0",
+      "N:Carrero Contreras;Carlos Julio;;;",
+      "FN:Carlos Julio Carrero Contreras",
+      "ORG:A1 Traducciones",
+      "TITLE:Traductor Oficial",
+      "TEL;TYPE=CELL,VOICE:+573006604942",
+      "TEL;TYPE=CELL,VOICE:+573183125559",
+      "EMAIL;TYPE=WORK:info@a1traducciones.com",
+      "EMAIL;TYPE=INTERNET:carrerocarlos@gmail.com",
+      "URL:https://www.a1traducciones.com",
+      "ADR;TYPE=WORK:;;Av. Carrera 15 # 119-11 Of. 432;Bogotá;;;Colombia",
+      "END:VCARD"
+    ].join("\n");
+  }
+
+  function downloadVCard(btn){
+    const blob = new Blob([buildVCard()], {type:"text/vcard"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "Carlos_Carrero_A1_Traducciones.vcf";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    if(btn){
+      const lbl = btn.querySelector(".lbl");
+      const prev = lbl.textContent;
+      btn.classList.add("done");
+      lbl.textContent = "¡Contacto guardado!";
+      setTimeout(()=>{ btn.classList.remove("done"); lbl.textContent = prev; }, 2200);
+    }
+  }
+
+  // ---------- QR: apunta a la landing (así comparten la tarjeta hacia adelante) ----------
+  (function(){
+    const data = encodeURIComponent(CARD_URL);
+    document.getElementById("qrImg").src =
+      "https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&color=16-28-58&data=" + data;
+  })();
+
+  // ---------- scroll progress bar ----------
+  const progressBar = document.getElementById("progress");
+
+  // ---------- reveal on scroll (sections + staggered groups) ----------
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); } });
+  }, {threshold:.15});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+  const groupIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); groupIO.unobserve(e.target); } });
+  }, {threshold:.2});
+  document.querySelectorAll(".svc-grid, .lang-cloud, .equip-list").forEach(el=>groupIO.observe(el));
+
+  // ---------- parallax shards + scroll progress (single rAF loop) ----------
+  const shards = Array.from(document.querySelectorAll(".shard"));
+  let ticking = false;
+  function onScroll(){
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const y = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = (max > 0 ? (y/max)*100 : 0) + "%";
+        shards.forEach(s=>{
+          const depth = parseFloat(s.dataset.depth);
+          const rot = (y*depth*0.4)%360;
+          s.style.transform = `translateY(${ -y*depth }px) rotate(${rot}deg)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  // ---------- sticky bottom bar ----------
+  const bar = document.getElementById("stickybar");
+  const hero = document.querySelector(".hero");
+  const barIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ bar.classList.toggle("show", !e.isIntersecting); });
+  }, {threshold:0});
+  barIO.observe(hero);
+
+  // ---------- pointer spotlight (glass shine follows cursor) ----------
+  const spot = document.getElementById("spotlight");
+  window.addEventListener("pointermove", (e)=>{
+    spot.style.setProperty("--sx", e.clientX + "px");
+    spot.style.setProperty("--sy", e.clientY + "px");
+    spot.style.opacity = 1;
+  });
+  window.addEventListener("pointerleave", ()=>{ spot.style.opacity = 0; });
+
+  // ---------- ripple micro-interaction on tappable buttons ----------
+  document.querySelectorAll(".action, .save-btn, .socials a").forEach(el=>{
+    el.addEventListener("click", function(e){
+      const rect = this.getBoundingClientRect();
+      const r = document.createElement("span");
+      r.className = "ripple";
+      const size = Math.max(rect.width, rect.height) * 1.4;
+      r.style.width = r.style.height = size + "px";
+      r.style.left = (e.clientX - rect.left - size/2) + "px";
+      r.style.top = (e.clientY - rect.top - size/2) + "px";
+      this.style.position = "relative";
+      this.appendChild(r);
+      setTimeout(()=>r.remove(), 650);
+    });
+  });
+</script>
+
+</body>
+</html>
